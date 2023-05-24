@@ -1,17 +1,30 @@
 const express = require('express')
 const dataIngestionService = require('../services/dataIngestionService')
-
 const router = express.Router()
 
-router.post('/ingest', async (req, res, next) => {
+const processData = async (req, res, next) => {
   try {
     const data = req.body
-    const processedData = await dataIngestionService.processIncomingData(data)
-    res.status(200).json({ message: 'Data ingested successfully', data: processedData })
+    const processedData = await dataIngestionService.processData(data)
+    res.status(200).json({ message: 'Data processed successfully', data: processedData })
   } catch (error) {
     next(error)
   }
-})
+}
 
-module.exports = router
+const validateData = async (req, res, next) => {
+  try {
+    // Logic for validating the data
+    // ...
 
+    res.status(200).json({ message: 'Data validation successful' })
+  } catch (error) {
+    next(error)
+  }
+}
+
+// Export the functions
+module.exports = {
+  processData,
+  validateData,
+}

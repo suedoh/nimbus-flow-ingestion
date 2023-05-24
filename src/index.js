@@ -1,25 +1,29 @@
-// Import required modules and dependencies
+/**
+ * @file index.js
+ * @description Main entry point of the microservice
+ * @current-functionality Sets up the server and initializes necessary components
+ * @TODO Enhances server configuration and handles additional functionalities as required
+ */
+
 const express = require('express')
-const bodyParser = require('body-parser')
+const app = express()
 const dataRoutes = require('./routes/dataRoutes')
 
-// Create an instance of Express app
-const app = express()
+// Middleware
+app.use(express.json())
 
-// Set up middleware
-app.use(bodyParser.json())
+// Routes
+app.use('/api', dataRoutes)
 
-// Define API routes
-app.use('/api/data', dataRoutes)
-
-// Define a default route
-app.get('/', (req, res) => {
-  res.send('Welcome to Microservice 1!')
+// Error handler middleware
+app.use((err, req, res, next) => {
+  console.error(err)
+  res.status(500).json({ error: 'Internal Server Error' })
 })
 
 // Start the server
-const PORT = process.env.PORT || 3000
-app.listen(PORT, () => {
-  console.log(`Microservice 1 is running on port ${PORT}`)
+const port = process.env.PORT || 3000
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`)
 })
 

@@ -9,10 +9,13 @@ const router = express.Router()
 
 // Import the DataModel and any other necessary modules
 const DataModel = require('../models/dataModel')
-const dataController = require('../controllers/dataIngestionController');
+const dataController = require('../controllers/dataIngestionController.js')
 
 // Route for handling data ingestion
-router.post('/data', dataController.processData);
+router.post('/data', dataController.processData)
+
+// Route for validating data
+router.post('/validate', dataController.validateData)
 
 // Define the route handlers
 router.post('/', (req, res) => {

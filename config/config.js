@@ -1,3 +1,10 @@
+/**
+ * @file config.js
+ * @description Configuration file for the microservice
+ * @current-functionality Holds configuration options for the microservice
+ * @TODO Expands the configuration options and handles additional settings as needed
+ */
+
 require('dotenv').config()
 
 module.exports = {

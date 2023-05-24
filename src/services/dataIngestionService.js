@@ -1,4 +1,11 @@
-const kafka = require('./config/kafka')
+/**
+ * @file dataIngestionService.js
+ * @description Service for data ingestion operations
+ * @current-functionality Handles basic data ingestion functionality
+ * @TODO Implements data validation, error handling, and interacts with data storage
+ */
+
+const kafka = require('../../config/kafka')
 const DataModel = require('../models/dataModel')
 
 class DataIngestionService {
