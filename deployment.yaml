@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nimbus-flow-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nimbus-flow
+  template:
+    metadata:
+      labels:
+        app: nimbus-flow
+    spec:
+      containers:
+        - name: nimbus-flow
+          image: <your-docker-image>
+          ports:
+            - containerPort: 3000
+
