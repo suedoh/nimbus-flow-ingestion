@@ -1,7 +1,7 @@
 /**
-* dataRoutes.js file sets up an Express router and defines a route handler for the POST request. 
-* When a POST request is received at the specified endpoint (/), it extracts the data from the request body and creates a new instance of the DataModel class. 
-* It then performs data validation using the isValid() method and proceeds with further actions if the data is valid. 
+* dataRoutes.js file sets up an Express router and defines a route handler for the POST request.
+* When a POST request is received at the specified endpoint (/), it extracts the data from the request body and creates a new instance of the DataModel class.
+* It then performs data validation using the isValid() method and proceeds with further actions if the data is valid.
 * Finally, appropriate responses are sent back to the client
 **/
 const express = require('express')
@@ -10,6 +10,11 @@ const router = express.Router()
 // Import the DataModel and any other necessary modules
 const DataModel = require('../models/dataModel')
 const dataController = require('../controllers/dataIngestionController.js')
+
+// Route handler for the root path
+app.get('/', (_req, res) => {
+  res.send('Welcome to Nimbus')
+})
 
 // Route for handling data ingestion
 router.post('/data', dataController.processData)
