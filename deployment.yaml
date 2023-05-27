@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: nimbus-flow
-          image: <your-docker-image>
+          image: public.ecr.aws/v6m8y3a9/nimbus-flow:latest
           ports:
             - containerPort: 3000
 
