@@ -12,6 +12,11 @@ const dataRoutes = require('./routes/dataRoutes')
 // Middleware
 app.use(express.json())
 
+// Route handler for the root path
+app.get('/', (_req, res) => {
+  res.send('Welcome to Nimbus')
+})
+
 // Routes
 app.use('/api', dataRoutes)
 
@@ -24,6 +29,6 @@ app.use((err, req, res, next) => {
 // Start the server
 const port = process.env.PORT || 3000
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`)
+  console.log(`Server running on port ${port}!`)
 })
 
