@@ -6,6 +6,8 @@
  */
 
 const kafka = require('../../config/kafka')
+const UserGeneratorService = require('./userGeneratorService')
+const userGeneratorService = new UserGeneratorService()
 const DataModel = require('../models/dataModel')
 
 class DataIngestionService {
@@ -31,12 +33,33 @@ class DataIngestionService {
   async validateAndProcessData(data) {
     // Implement your data validation and processing logic here
     // This method should validate and transform the incoming data according to your project requirements
+    console.log(data, 'validated.')
     // Return the processed data
   }
 
-  async publishToKafka(data) {
-    // Implement your Kafka integration logic here
-    // This method should publish an event/message to Kafka based on the processed data
+  async publishToKafka(data) {}
+
+  async ingestDataFromAPI() {
+    try {
+      // Call the API to fetch data
+      const data = await userGeneratorService.fetchRandomUser()
+      // const data = await APIService.fetchData()
+
+      // Process the fetched data
+      const processedData = await this.validateAndProcessData(data)
+
+      // Save the processed data to the database
+      // Currently throwing error due to no time stamp
+      // await DataModel.create(processedData)
+
+      // Publish an event/message to Kafka (optional)
+      await this.publishToKafka(processedData)
+
+      return processedData
+    } catch (error) {
+      console.error('Error occurred during data ingestion from API:', error)
+      throw error
+    }
   }
 }
 
