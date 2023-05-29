@@ -23,8 +23,21 @@ const validateData = async (req, res, next) => {
   }
 }
 
+const generateUserData = async (req, res, next) => {
+  try {
+    const data = req.body
+    const generatedUserData = await dataIngestionService.ingestDataFromAPI()
+    // console.log(generatedUserData)
+    res.status(200).json({ message: 'Data validation successful', data: generatedUserData })
+    return data
+  } catch (error) {
+
+  }
+}
+
 // Export the functions
 module.exports = {
   processData,
   validateData,
+  generateUserData,
 }
