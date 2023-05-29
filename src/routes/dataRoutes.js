@@ -11,9 +11,12 @@ const router = express.Router()
 const DataModel = require('../models/dataModel')
 const dataController = require('../controllers/dataIngestionController.js')
 
-// Route handler for the root path
-app.get('/', (_req, res) => {
-  res.send('Welcome to Nimbus')
+// Route for validating data
+// router.get('/user', dataController.generateUserData)
+router.get('/user', (req, res) => {
+  const data = dataController.generateUserData(req, res)
+  // console.log(data)
+  res.status(200).json({ data: data })
 })
 
 // Route for handling data ingestion
