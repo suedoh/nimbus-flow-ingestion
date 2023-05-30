@@ -33,8 +33,9 @@ class DataIngestionService {
   async validateAndProcessData(data) {
     // Implement your data validation and processing logic here
     // This method should validate and transform the incoming data according to your project requirements
-    console.log(data, 'validated.')
+    // console.log(data, 'validated.')
     // Return the processed data
+    return data
   }
 
   async publishToKafka(data) {}
