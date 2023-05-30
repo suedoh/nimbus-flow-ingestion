@@ -19,14 +19,15 @@ const Data = sequelize.define('Data', {
   timestamp: {
     type: DataTypes.DATE,
     allowNull: false,
+    defaultValue: DataTypes.NOW, // Set the default value to the current timestamp
   },
   value: {
-    type: DataTypes.FLOAT,
-    allowNull: false,
+    type: DataTypes.STRING,
+    allowNull: true, // Allow null values for the field
   },
 }, {
   tableName: 'data', // Adjust the table name as needed
-  timestamps: false, // Remove if you want timestamps in your table
+  // timestamps: false, // Remove if you want timestamps in your table
 })
 
 module.exports = Data
