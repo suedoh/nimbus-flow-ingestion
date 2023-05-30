@@ -17,7 +17,7 @@ const validateData = async (req, res, next) => {
     // Logic for validating the data
     // ...
 
-    res.status(200).json({ message: 'Data validation successful' })
+    // res.status(200).json({ message: 'Data validation successful' })
   } catch (error) {
     next(error)
   }
