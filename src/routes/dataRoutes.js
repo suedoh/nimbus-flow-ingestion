@@ -11,12 +11,10 @@ const router = express.Router()
 const DataModel = require('../models/dataModel')
 const dataController = require('../controllers/dataIngestionController.js')
 
-// Route for validating data
-// router.get('/user', dataController.generateUserData)
-router.get('/user', (req, res) => {
-  const data = dataController.generateUserData(req, res)
-  // console.log(data)
-  res.status(200).json({ data: data })
+// Route for generating user
+router.get('/user', async (req, res) => {
+  const data = await dataController.generateUserData(req, res)
+  console.log(data, 'route')
 })
 
 // Route for handling data ingestion
